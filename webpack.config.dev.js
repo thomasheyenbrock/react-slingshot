@@ -6,23 +6,29 @@ export default {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json']
   },
-  devtool: 'cheap-module-eval-source-map', // more info:https://webpack.js.org/guides/development/#using-source-maps and https://webpack.js.org/configuration/devtool/
+  devtool: 'cheap-module-eval-source-map',
+  // more info:https://webpack.js.org/guides/development/#using-source-maps
+  // and https://webpack.js.org/configuration/devtool/
   entry: [
     // must be first entry to properly set public path
     './src/webpack-public-path',
     'react-hot-loader/patch',
     'webpack-hot-middleware/client?reload=true',
-    path.resolve(__dirname, 'src/index.js') // Defining path seems necessary for this to work consistently on Windows machines.
+    path.resolve(__dirname, 'src/index.js')
+    // Defining path seems necessary for this to work consistently on Windows machines.
   ],
   target: 'web',
   output: {
-    path: path.resolve(__dirname, 'dist'), // Note: Physical files are only output by the production build task `npm run build`.
+    path: path.resolve(__dirname, 'dist'),
+    // Note: Physical files are only output by the production build task `npm run build`.
     publicPath: '/',
     filename: 'bundle.js'
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'), // Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)
+      'process.env.NODE_ENV': JSON.stringify('development'),
+      // Tells React to build in either dev or prod modes.
+      // https://facebook.github.io/react/downloads.html (See bottom)
       __DEV__: true
     }),
     new webpack.HotModuleReplacementPlugin(),

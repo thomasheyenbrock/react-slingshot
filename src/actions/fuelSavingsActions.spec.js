@@ -7,6 +7,7 @@ import {getFormattedDateTime} from '../utils/dateHelper';
 
 describe('Actions', () => {
   let dateModified;
+
   beforeAll(() => {
     MockDate.set(new Date());
     dateModified = getFormattedDateTime();

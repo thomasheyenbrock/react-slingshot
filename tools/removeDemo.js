@@ -30,7 +30,8 @@ const filesToCreate = [
   },
   {
     path: './src/reducers/index.js',
-    content: '// Set up your root reducer here...\n import { combineReducers } from \'redux\';\n export default combineReducers;'
+    content: '// Set up your root reducer here...\n '+
+      'import { combineReducers } from \'redux\';\n export default combineReducers;'
   }
 ];
 
@@ -51,12 +52,14 @@ function removePackageJsonScriptEntry(scriptName) {
   const packageJsonPath = './package.json';
   let fileData = fs.readFileSync(packageJsonPath);
   let content = JSON.parse(fileData);
+
   delete content.scripts[scriptName];
   fs.writeFileSync(packageJsonPath,
     JSON.stringify(content, null, 2) + '\n');
 }
 
 let numPathsRemoved = 0;
+
 pathsToRemove.map(path => {
   removePath(path, () => {
     numPathsRemoved++;

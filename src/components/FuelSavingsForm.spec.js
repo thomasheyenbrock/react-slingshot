@@ -4,29 +4,32 @@ import FuelSavingsForm from './FuelSavingsForm';
 import FuelSavingsTextInput from './FuelSavingsTextInput';
 import FuelSavingsResults from './FuelSavingsResults';
 
+function getFuelSavings(necessaryDataIsProvidedToCalculateSavings, monthly, annual, threeYear) {
+  return {
+    newMpg: 20,
+    tradeMpg: 10,
+    newPpg: 1.50,
+    tradePpg: 1.50,
+    milesDriven: 100,
+    milesDrivenTimeframe: 'week',
+    displayResults: false,
+    dateModified: null,
+    necessaryDataIsProvidedToCalculateSavings,
+    savings: {
+      monthly,
+      annual,
+      threeYear
+    }
+  };
+}
+
 describe('<FuelSavingsForm />', () => {
   it('should contain <FuelSavingsTextInput /> components', () => {
     const saveFuelSavings = () => {
     };
     const calculateFuelSavings = () => {
     };
-    const fuelSavings = {
-      newMpg: 20,
-      tradeMpg: 10,
-      newPpg: 1.50,
-      tradePpg: 1.50,
-      milesDriven: 100,
-      milesDrivenTimeframe: 'week',
-      displayResults: false,
-      dateModified: null,
-      necessaryDataIsProvidedToCalculateSavings: false,
-      savings: {
-        monthly: 0,
-        annual: 0,
-        threeYear: 0
-      }
-    };
-
+    const fuelSavings = getFuelSavings(false, 0, 0, 0);
     const wrapper = shallow(<FuelSavingsForm
       saveFuelSavings={saveFuelSavings}
       calculateFuelSavings={calculateFuelSavings}
@@ -48,27 +51,9 @@ describe('<FuelSavingsForm />', () => {
   });
 
   it('should contain options to change miles driven timeframe', () => {
-    const saveFuelSavings = () => {
-    };
-    const calculateFuelSavings = () => {
-    };
-    const fuelSavings = {
-      newMpg: 20,
-      tradeMpg: 10,
-      newPpg: 1.50,
-      tradePpg: 1.50,
-      milesDriven: 100,
-      milesDrivenTimeframe: 'week',
-      displayResults: false,
-      dateModified: null,
-      necessaryDataIsProvidedToCalculateSavings: false,
-      savings: {
-        monthly: 0,
-        annual: 0,
-        threeYear: 0
-      }
-    };
-
+    const saveFuelSavings = () => {};
+    const calculateFuelSavings = () => {};
+    const fuelSavings = getFuelSavings(false, 0, 0, 0);
     const wrapper = shallow(<FuelSavingsForm
       saveFuelSavings={saveFuelSavings}
       calculateFuelSavings={calculateFuelSavings}
@@ -84,27 +69,9 @@ describe('<FuelSavingsForm />', () => {
   });
 
   it('should contain <FuelSavingsResults /> when necessary conditions are met', () => {
-    const saveFuelSavings = () => {
-    };
-    const calculateFuelSavings = () => {
-    };
-    const fuelSavings = {
-      newMpg: 20,
-      tradeMpg: 10,
-      newPpg: 1.50,
-      tradePpg: 1.50,
-      milesDriven: 100,
-      milesDrivenTimeframe: 'week',
-      displayResults: false,
-      dateModified: null,
-      necessaryDataIsProvidedToCalculateSavings: true,
-      savings: {
-        monthly: 10,
-        annual: 120,
-        threeYear: 360
-      }
-    };
-
+    const saveFuelSavings = () => {};
+    const calculateFuelSavings = () => {};
+    const fuelSavings = getFuelSavings(true, 10, 120, 360);
     const wrapper = shallow(<FuelSavingsForm
       saveFuelSavings={saveFuelSavings}
       calculateFuelSavings={calculateFuelSavings}
@@ -116,27 +83,9 @@ describe('<FuelSavingsForm />', () => {
   });
 
   it('should not contain <FuelSavingsResults /> when necessary conditions are not met', () => {
-    const saveFuelSavings = () => {
-    };
-    const calculateFuelSavings = () => {
-    };
-    const fuelSavings = {
-      newMpg: 20,
-      tradeMpg: 10,
-      newPpg: 1.50,
-      tradePpg: 1.50,
-      milesDriven: 100,
-      milesDrivenTimeframe: 'week',
-      displayResults: false,
-      dateModified: null,
-      necessaryDataIsProvidedToCalculateSavings: false,
-      savings: {
-        monthly: 0,
-        annual: 0,
-        threeYear: 0
-      }
-    };
-
+    const saveFuelSavings = () => {};
+    const calculateFuelSavings = () => {};
+    const fuelSavings = getFuelSavings(false, 0, 0, 0);
     const wrapper = shallow(<FuelSavingsForm
       saveFuelSavings={saveFuelSavings}
       calculateFuelSavings={calculateFuelSavings}
@@ -149,25 +98,8 @@ describe('<FuelSavingsForm />', () => {
 
   it('should handle form submit', () => {
     const saveFuelSavings = jest.fn();
-    const calculateFuelSavings = () => {
-    };
-    const fuelSavings = {
-      newMpg: 20,
-      tradeMpg: 10,
-      newPpg: 1.50,
-      tradePpg: 1.50,
-      milesDriven: 100,
-      milesDrivenTimeframe: 'week',
-      displayResults: false,
-      dateModified: null,
-      necessaryDataIsProvidedToCalculateSavings: false,
-      savings: {
-        monthly: 0,
-        annual: 0,
-        threeYear: 0
-      }
-    };
-
+    const calculateFuelSavings = () => {};
+    const fuelSavings = getFuelSavings(false, 0, 0, 0);
     const wrapper = shallow(<FuelSavingsForm
       saveFuelSavings={saveFuelSavings}
       calculateFuelSavings={calculateFuelSavings}
@@ -181,25 +113,8 @@ describe('<FuelSavingsForm />', () => {
 
   it('should submit appState', () => {
     const saveFuelSavings = jest.fn();
-    const calculateFuelSavings = () => {
-    };
-    const fuelSavings = {
-      newMpg: 20,
-      tradeMpg: 10,
-      newPpg: 1.50,
-      tradePpg: 1.50,
-      milesDriven: 100,
-      milesDrivenTimeframe: 'week',
-      displayResults: false,
-      dateModified: null,
-      necessaryDataIsProvidedToCalculateSavings: false,
-      savings: {
-        monthly: 0,
-        annual: 0,
-        threeYear: 0
-      }
-    };
-
+    const calculateFuelSavings = () => {};
+    const fuelSavings = getFuelSavings(false, 0, 0, 0);
     const wrapper = shallow(<FuelSavingsForm
       saveFuelSavings={saveFuelSavings}
       calculateFuelSavings={calculateFuelSavings}
@@ -212,26 +127,9 @@ describe('<FuelSavingsForm />', () => {
 
 
   it('should calculate fuel savings on text input change', () => {
-    const saveFuelSavings = () => {
-    };
+    const saveFuelSavings = () => {};
     const calculateFuelSavings = jest.fn();
-    const fuelSavings = {
-      newMpg: 20,
-      tradeMpg: 10,
-      newPpg: 1.50,
-      tradePpg: 1.50,
-      milesDriven: 100,
-      milesDrivenTimeframe: 'week',
-      displayResults: false,
-      dateModified: null,
-      necessaryDataIsProvidedToCalculateSavings: false,
-      savings: {
-        monthly: 0,
-        annual: 0,
-        threeYear: 0
-      }
-    };
-
+    const fuelSavings = getFuelSavings(false, 0, 0, 0);
     const wrapper = shallow(<FuelSavingsForm
       saveFuelSavings={saveFuelSavings}
       calculateFuelSavings={calculateFuelSavings}
@@ -244,26 +142,9 @@ describe('<FuelSavingsForm />', () => {
   });
 
   it('should calculate fuel savings on miles driven timeframe change', () => {
-    const saveFuelSavings = () => {
-    };
+    const saveFuelSavings = () => {};
     const calculateFuelSavings = jest.fn();
-    const fuelSavings = {
-      newMpg: 20,
-      tradeMpg: 10,
-      newPpg: 1.50,
-      tradePpg: 1.50,
-      milesDriven: 100,
-      milesDrivenTimeframe: 'week',
-      displayResults: false,
-      dateModified: null,
-      necessaryDataIsProvidedToCalculateSavings: false,
-      savings: {
-        monthly: 0,
-        annual: 0,
-        threeYear: 0
-      }
-    };
-
+    const fuelSavings = getFuelSavings(false, 0, 0, 0);
     const wrapper = shallow(<FuelSavingsForm
       saveFuelSavings={saveFuelSavings}
       calculateFuelSavings={calculateFuelSavings}
